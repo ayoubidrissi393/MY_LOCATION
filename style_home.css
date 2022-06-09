@@ -1,0 +1,38 @@
+body{
+    background-color: #E1E1E1;
+}
+.continar{
+    background-color: aliceblue;
+    margin-top: 10%;
+    border: 2px solid;
+    border-radius: 20px;
+    width: 375px;
+    height: 406px;
+    margin-left: 35%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.section{
+    border: 2px solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    padding: 14PX;
+    text-align: center;
+    margin-top: 20px;
+    width: 259px;
+}
+.continar :hover{
+    background-color: #695CFE !important;
+    color: #fff;
+    border: none;
+}
+label{
+    margin-right: 5%;
+}
+span{
+    margin-left: 10%;
+    
+}
+
