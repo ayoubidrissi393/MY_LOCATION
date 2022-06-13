@@ -1,3 +1,6 @@
+<?php 
+    include "Connexion.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,54 +32,56 @@
                         <th>DATE Reservations</th>
                         <th>DATE DEBUIT</th>
                         <th>DATE FIN</th>
-                        <th>CIN</th>
+                        <th>CIN Client</th>
+                        <th>CIN Utilisatuer</th>
                         <th>MATRICULE VOITURE</th>
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                
-                  
-           
+                    <?php 
+
+                    // supprimer un element 
+                    // if(isset($_REQUEST['ID'])) {
+                    //     $id = $_REQUEST['ID'];
+                    //     $sqlDelete = "DELETE FROM employe WHERE ID = '$id' ";
+                    //     $conn->query($sqlDelete);
+                    // header("Location: select.php");
+
+
+                    if(isset($_GET['rn']))
+                    {
+                    $id = $_GET['rn'];
+                    $query = "DELETE FROM reservation WHERE Code_Res='" . $id . "'";
+                    $res = mysqli_query($conn, $query);
+                    if($res) {
+                    //  echo json_encode($res);
+                    }
+                    else {
+                    echo "Error: " . $sql . "" . mysqli_error($conn);
+                    }
+                    }
+                    // recharger le donnes dans base donne 
+                    $sql = "SELECT * FROM `reservation`";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck =mysqli_num_rows($result);
+
+                    if($resultCheck >0){
+                    while($row = mysqli_fetch_assoc($result))
+                    {
+                        echo "<tr>";
+                        echo "<td>".$row["Code_Res"]."</td>";
+                        echo "<td>".$row["Date_de_début_Res"]."</td>";
+                        echo "<td>".$row["date_de_fin_Res"]."</td>";
+                        echo "<td>".$row["date_de_Reservation"]."</td>";
+                        echo "<td>".$row["CIN_Cli"]."</td>";
+                        echo "<td>".$row["CIN_Uti"]."</td>";
+                        echo "<td>".$row["Matricule"]."</td>";
+                        echo "<td style='WIDTH: 5%;'><a href='modifier-Clients.php?ID=$row[Code_Res]'><img style='width:86%;' src=photo/modifier.png ></a></td>";
+                        echo "<td style='WIDTH: 5%;'><a href='MODIFIER-RESERVATION.php?rn=$row[Code_Res]' onClick=\"return confirm('confirmer le supression !!')\"><img src=photo/supprimer.png></a></td>";
+                        echo "</tr>";
+                    }
+                    }
+                    ?> 
         </table>
     </div>
 </body>

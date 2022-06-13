@@ -1,3 +1,6 @@
+<?php 
+    include "Connexion.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,110 +37,51 @@
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
-                    <tr>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                        <td>aa</td>
-                    </tr>
+        <?php 
+
+            // supprimer un element 
+            // if(isset($_REQUEST['ID'])) {
+            //     $id = $_REQUEST['ID'];
+            //     $sqlDelete = "DELETE FROM employe WHERE ID = '$id' ";
+            //     $conn->query($sqlDelete);
+            // header("Location: select.php");
+
+
+             if(isset($_GET['rn']))
+             {
+             $id = $_GET['rn'];
+             $query = "DELETE FROM client WHERE CIN_Cli='" . $id . "'";
+             $res = mysqli_query($conn, $query);
+             if($res) {
+            //  echo json_encode($res);
+             }
+              else {
+             echo "Error: " . $sql . "" . mysqli_error($conn);
+             }
+            }
+        // recharger le donnes dans base donne 
+        $sql = "SELECT * FROM `client`";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck =mysqli_num_rows($result);
+
+        if($resultCheck >0){
+            while($row = mysqli_fetch_assoc($result))
+            {
+                echo "<tr>";
+                echo "<td>".$row["CIN_Cli"]."</td>";
+                echo "<td>".$row["Prénom"]."</td>";
+                echo "<td>".$row["Nom"]."</td>";
+                echo "<td>".$row["Numéro_De_Permis"]."</td>";
+                echo "<td>".$row["Téléphone"]."</td>";
+                echo "<td>".$row["Adresse"]."</td>";
+                echo "<td style='WIDTH: 5%;'><a href='modifier-Clients.php?ID=$row[CIN_Cli]'><img class='img-modifier' src=photo/modifier.png ></a></td>";
+                echo "<td style='WIDTH: 5%;'><a href='CLIENTS.php?rn=$row[CIN_Cli]' onClick=\"return confirm('confirmer le supression !!')\"><img src=photo/supprimer.png></a></td>";
+                echo "</tr>";
+            }
+        }
+       
+    
+   ?> 
         </table>
     </div>
 </body>
