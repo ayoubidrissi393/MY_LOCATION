@@ -69,15 +69,15 @@
                     while($row = mysqli_fetch_assoc($result))
                     {
                         echo "<tr>";
-                        echo "<td>".$row["Code_Res"]."</td>";
+                        echo "<td>".$row["Code_Res"]."</td>";                        
+                        echo "<td>".$row["date_de_Reservation"]."</td>";
                         echo "<td>".$row["Date_de_début_Res"]."</td>";
                         echo "<td>".$row["date_de_fin_Res"]."</td>";
-                        echo "<td>".$row["date_de_Reservation"]."</td>";
                         echo "<td>".$row["CIN_Cli"]."</td>";
                         echo "<td>".$row["CIN_Uti"]."</td>";
                         echo "<td>".$row["Matricule"]."</td>";
-                        echo "<td style='WIDTH: 5%;'><a href='modifier-Clients.php?ID=$row[Code_Res]'><img style='width:86%;' src=photo/modifier.png ></a></td>";
-                        echo "<td style='WIDTH: 5%;'><a href='MODIFIER-RESERVATION.php?rn=$row[Code_Res]' onClick=\"return confirm('confirmer le supression !!')\"><img src=photo/supprimer.png></a></td>";
+                        echo "<td style='WIDTH: 5%;'><a href='MODIFIER-RESERVATION.php?ID=$row[Code_Res]'><img style='width:86%;' src=photo/modifier.png ></a></td>";
+                        echo "<td style='WIDTH: 5%;'><a href='Reservation.php?rn=$row[Code_Res]' onClick=\"return confirm('confirmer le supression !!')\"><img src=photo/supprimer.png></a></td>";
                         echo "</tr>";
                     }
                     }

@@ -62,10 +62,9 @@
             $Adresse = $_POST['ADRESSE'];
             $CIN_Uti = $_POST['CIN_Uti'];
   
-
             $sql = "INSERT INTO client (`CIN_Cli`, `Prénom`, `Nom`, `Numéro_De_Permis`, `Téléphone`, `Adresse`, `CIN_Uti`)
              VALUES ('$ID', '$prenom', '$nom', '$Numéro_Permis', '$Téléphone', '$Adresse', '$CIN_Uti');";
-        $result = mysqli_query($conn, $sql);
+             $result = mysqli_query($conn, $sql);
              // move the uploaded image into the folder: images
           
            

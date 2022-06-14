@@ -1,3 +1,7 @@
+
+<?php 
+    include "Connexion.php"
+?>
 <!DOCTYPE html>
 <!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en" dir="ltr">
@@ -19,17 +23,11 @@
         }
         if(isset($_POST['submit']))
         {    
-           
-            $Date_début_Res = $_POST['Date_de_début_Res'];
-            $date_fin_Res = $_POST['date_de_fin_Res'];
-            $date_Reservation = $_POST['date_de_Reservation'];
-            $CIN_Uti = $_POST['CIN_Uti'];
-            $CIN_Cli = $_POST['CIN_Cli'];
-            $Matricule = $_POST['Matricule '];
+            $date_fin_Res = $_POST['date_fin'];
             // Requête de modification d'enregistrement
-            $sql = "UPDATE `client`
-             SET `Prénom`='$prenom',`Nom`='$nom',`Numéro_De_Permis`='$numero_permis',`Téléphone`='$tel',`Adresse`='$adresse'
-              WHERE CIN_Cli= '$id' ";
+            $sql = "UPDATE `reservation`
+             SET `date_de_fin_Res`='$date_fin_Res'
+              WHERE Code_Res= '$id' ";
             
              $result = mysqli_query($conn, $sql);
              if (mysqli_query($conn, $sql)) {
@@ -38,7 +36,7 @@
           else {
               echo "Error: " . $sql . ":-" . mysqli_error($conn);
           }
-           header("location: CLIENTS.php");
+           header("location: Reservation.php");
            
         }
 
@@ -51,27 +49,31 @@
         <label for="">CODE</label><input type="text" placeholder="CODE" required>
       </div> -->
       <div class="input-box">
-        <label for="">DATE DEBUIT</label><input type="date" placeholder="DATE DEBUIT RESERVATION" value="<?php echo $row["Date_de_début_Res"] ?>" required>
+        <label for="">DATE DEBUIT</label><input type="date" id="debuit" name="debuit" disabled placeholder="DATE DEBUIT RESERVATION" value="<?php echo $row["Date_de_début_Res"] ?>" required>
       </div>
       <div class="input-box">
-         <label for="">DATE FIN</label><input type="date" placeholder="DATE FIN RESERVATION" value="<?php echo $row["date_de_fin_Res"] ?>" required>
+         <label for="">DATE FIN</label><input type="date" id="date_fin" name="date_fin" placeholder="DATE FIN RESERVATION" value="<?php echo $row["date_de_fin_Res"] ?>" required>
       </div>
       <div class="input-box">
-        <label for="">CIN</label> <input type="text" placeholder=" CIN CLIENT" value="<?php echo $row["CIN_Cli"] ?>" required>
+        <label for="">CIN</label> <input type="text" id="CIN_client" name="CIN_client" disabled placeholder=" CIN CLIENT" value="<?php echo $row["CIN_Cli"] ?>" required>
       </div>
       <div class="input-box">
-        <label for="">MATRICULE</label> <input type="tel" placeholder="MATRICULE VOITURE" value="<?php echo $row["Matricule "] ?>" required>
+        <label for="">MATRICULE</label> <input type="text" id="MATRICULE" name="MATRICULE" disabled placeholder="MATRICULE VOITURE" value="<?php echo $row["Matricule"] ?>" required>
       </div>
       <div class="input-box">
-        <label for="">DATE </label> <input type="date" placeholder="DATE RESREVATIONS" value="<?php echo $row["date_de_Reservation"] ?>" required>
+        <label for="">DATE RESREVATIONS</label> <input type="date" id="DATE_RESREVATIONS" name="DATE_RESREVATIONS" disabled placeholder="DATE RESREVATIONS" value="<?php echo $row["date_de_Reservation"] ?>" required>
       </div> 
-      <div class="input-box">
-        <label for="">Matricule  </label> <input type="date" placeholder="Matricule " value="<?php echo $row["Matricule"] ?>" required>
-      </div>
+      
       <div class="button">
-         <button>annuler</button>
+         <button type="submit" value="annuler" name="annuler">annuler</button>
+         <?php
+           if(isset($_POST['annuler']))
+           {   
+            header("location: Reservation.php");
+            }
+         ?>
          <!-- <img class="icon-annuler" src="photo/annuler.png"> -->
-         <button>valider</button>
+         <button type="submit" value="submit" name="submit">valider</button>
          <!-- <img class="icon-valider" src="photo/valider.png"> -->
       </div> 
     </form>
