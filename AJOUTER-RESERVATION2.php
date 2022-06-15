@@ -1,6 +1,6 @@
 <?php 
     include "Connexion.php"
-  
+
 ?>
 <!DOCTYPE html>
 <!-- Coding by CodingLab | www.codinglabweb.com-->
@@ -14,46 +14,14 @@
 <body>
   <div class="wrapper">
     <h2>AJOUTER UN RESERVATIONS  </h2>
-    
-    <form action="AJOUTER-RESERVATION.php" method ="POST" enctype="multipart/form-data">
-      <!-- <div class="input-box">
-        <label for="">CODE</label><input type="text" placeholder="CODE" required>
-      </div> -->
-      <div class="input-box">
-        <label for="">DATE DEBUIT</label><input  id="DATE_DEBUIT" name="DATE_DEBUIT" type="date" placeholder="DATE DEBUIT RESERVATION" required>
-      </div>
-      <div class="input-box">
-         <label for="">DATE FIN</label><input  id="DATE_FIN" name="DATE_FIN" type="date" placeholder="DATE FIN RESERVATION" required>
-      </div>  
-      <div class="input-box">
-        <label for="">CIN Client</label> <input  id="CIN_Cli" name="CIN_Cli" type="text" placeholder="CIN CLIENT" required>
-      </div>
-      <div class="input-box">
-        <label for="">CIN Utilisateur</label><input type="text" id="CIN_Uti" name="CIN_Uti"  placeholder="CIN Utilisateur" required>
-      </div>
-      <div class="input-box">
-        <label for="">MATRICULE</label> <input id="MATRICULE" name="MATRICULE" type="text"  placeholder="MATRICULE VOITURE" required>
-      </div>
-      <div class="input-box">
-        <label for="">DATE RESREVATIONS </label> <input id="DATE_RESR" name="DATE_RESR" type="date" placeholder="DATE RESREVATIONS" required>
-      </div> 
- 
-      <div class="button">
-      <button type="submit" value="annuler" name="annuler">annuler</button>
-         <?php
-           if(isset($_POST['annuler']))
-           {   
-            header("location: Reservation.php");
-            }
-         ?>
-         <!-- <img class="icon-annuler" src="photo/annuler.png"> -->
-         <button type="submit" value="submit" name="submit">valider</button>
-         <!-- <img class="icon-valider" src="photo/valider.png"> -->
-      </div>
-    </form>
-  </div>
-  <?php
-      
+    <?php
+      $id = $_REQUEST['ID'];
+      if(isset($_REQUEST['ID'])) 
+      { 
+          $sqlSelect = "SELECT * FROM voiture WHERE Matricule = '$id' ";
+          $result = $conn->query($sqlSelect);
+          $row = $result -> fetch_array(MYSQLI_ASSOC);
+      }
       if(isset($_POST['submit']))
       {    
           $DATE_debuit = $_POST['DATE_DEBUIT'];
@@ -73,6 +41,44 @@
           header("location: Reservation.php");
       }
       ?>
+    <form action="AJOUTER-RESERVATION.php" method ="POST" enctype="multipart/form-data">
+      <!-- <div class="input-box">
+        <label for="">CODE</label><input type="text" placeholder="CODE" required>
+      </div> -->
+      <div class="input-box">
+        <label for="">DATE DEBUIT</label><input  id="DATE_DEBUIT" name="DATE_DEBUIT" type="date" placeholder="DATE DEBUIT RESERVATION" required>
+      </div>
+      <div class="input-box">
+         <label for="">DATE FIN</label><input  id="DATE_FIN" name="DATE_FIN" type="date" placeholder="DATE FIN RESERVATION" required>
+      </div>  
+      <div class="input-box">
+        <label for="">CIN Client</label> <input  id="CIN_Cli" name="CIN_Cli" type="text" placeholder="CIN CLIENT" required>
+      </div>
+      <div class="input-box">
+        <label for="">CIN Utilisateur</label><input type="text" id="CIN_Uti" name="CIN_Uti"  placeholder="CIN Utilisateur" required>
+      </div>
+      <div class="input-box">
+        <label for="">MATRICULE</label> <input id="MATRICULE" name="MATRICULE" type="text" value="<?php echo $row["Matricule"] ?>" placeholder="MATRICULE VOITURE" required>
+      </div>
+      <div class="input-box">
+        <label for="">DATE RESREVATIONS </label> <input id="DATE_RESR" name="DATE_RESR" type="date" placeholder="DATE RESREVATIONS" required>
+      </div> 
+ 
+      <div class="button">
+      <button type="submit" value="annuler" name="annuler">annuler</button>
+         <?php
+           if(isset($_POST['annuler']))
+           {   
+            header("location: Reservation.php");
+            }
+         ?>
+         <!-- <img class="icon-annuler" src="photo/annuler.png"> -->
+         <button type="submit" value="submit" name="submit">valider</button>
+         <!-- <img class="icon-valider" src="photo/valider.png"> -->
+      </div>
+    </form>
+  </div>
+  
 </body>
 </html>
 <?php

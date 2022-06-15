@@ -20,132 +20,24 @@
         </a>
     </div>
     <div class="card">
-    
-    <!-- <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <a href="AJOUTER-RESERVATION.php"><button class="btn">Reserver</button></a>
-            <a href="MODIFIER-VOITURE.php"><button class="btn">Modifier</button></a>
-        </div>
-    </div> -->
  <?php while ($row = mysqli_fetch_assoc($result)): ?>
    <div class="cards">
-               
-                    <img class="img1" src="photo/car1.png">
-                    <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-                    <label for="">Nom : <span><?php echo ?>/span></label>
-                    <label for="">Carburant : <span>Diesel</span></label>
-                    <label for="">Matricule : <span>40-B-12345</span></label>
-                    <label for="">L’eta : <span>DISPONIBLE</span></label> 
-                    <label for="">prix : <span>400</span></label> 
+                    <?php echo '<img class="img1" src="'. 'photo/'. $row["photo"].'"/>';?>
+                    <a class="img2-c" href="Ajouter-Reparable.php"><img class="img2" src="photo/reparation.png"></a>
+                    <label for="">Marque : <span><?php echo $row["Marque"]?></span></label>
+                    <label for="">Carburant : <span><?php echo $row["Carburant"]?></span></label>
+                    <label for="">Matricule : <span><?php echo $row["Matricule"]?></span></label>
+                    <label for="">L’eta : <span><?php echo $row["L’eta"]?></span></label> 
+                    <label for="">prix : <span><?php echo $row["Prix_Location"]?></span></label> 
                     <div class="button">
-            <a href="AJOUTER-RESERVATION.php"><button class="btn">Reserver</button></a>
-            <a href="MODIFIER-VOITURE.php"><button class="btn">Modifier</button></a>
-                </div>                    
-                <?php
-                endwhile
-                ?>   
+            <?php echo "<a href='AJOUTER-RESERVATION2.php?ID=$row[Matricule]'><button class='btn'>Reserver</button></a>"?>
+           <?php echo "<a href='MODIFIER-VOITURE.php?ID=$row[Matricule]'><button class='btn'>Modifier</button></a>"?>
+                    </div>                    
+              
     </div>
-
-    <!-- <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> 
-    <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> <div class="cards"> 
-        <img class="img1" src="photo/car1.png">
-        <a class="img2-c" href=""><img class="img2" src="photo/reparation.png"></a>
-        <label for="">Nom : <span>renualt megane 4</span></label>
-        <label for="">Carburant : <span>Diesel</span></label>
-        <label for="">Matricule : <span>40-B-12345</span></label>
-        <label for="">L’eta : <span>DISPONIBLE</span></label> 
-        <label for="">prix : <span>400</span></label> 
-        <div class="button">
-            <button class="btn">Reserver</button>
-            <button class="btn">Modifier</button>
-        </div>
-        
-    </div> -->
+    <?php
+        endwhile
+    ?>   
 </div>
 </body>
 </html>

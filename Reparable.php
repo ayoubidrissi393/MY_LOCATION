@@ -1,3 +1,6 @@
+<?php 
+    include "Connexion.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +28,7 @@
     <div>
         <table id="table_index" class="table table-dark table-striped">
                     <tr>
+                        <th>CODE</th>
                         <th>Matricule</th>
                         <th>Date réparation</th>
                         <th>Date fin réparation</th>
@@ -32,24 +36,40 @@
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>40-B-12345</td>
-                        <td>20/05/2022</td>
-                        <td>30/05/2022</td>
-                        <td>mécanique</td>
-                    </tr>
-                    <tr>
-                        <td>40-B-12345</td>
-                        <td>20/05/2022</td>
-                        <td>30/05/2022</td>
-                        <td>mécanique</td>
-                    </tr>
-                    <tr>
-                        <td>40-B-12345</td>
-                        <td>20/05/2022</td>
-                        <td>30/05/2022</td>
-                        <td>mécanique</td> 
-                    </tr>
+                    <?php 
+
+                    if(isset($_GET['rn']))
+                    {
+                    $id = $_GET['rn'];
+                    $query = "DELETE FROM réparation WHERE CODE='" . $id . "'";
+                    $res = mysqli_query($conn, $query);
+                    if($res) {
+                    //  echo json_encode($res);
+                    }
+                    else {
+                    echo "Error: " . $sql . "" . mysqli_error($conn);
+                    }
+                    }
+                    // recharger le donnes dans base donne 
+                    $sql = "SELECT * FROM `réparation`";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck =mysqli_num_rows($result);
+
+                    if($resultCheck >0){
+                    while($row = mysqli_fetch_assoc($result))
+                    {
+                        echo "<tr>";
+                        echo "<td>".$row["CODE"]."</td>";                        
+                        echo "<td>".$row["Matricule"]."</td>";
+                        echo "<td>".$row["Date_de_début_réparation"]."</td>";
+                        echo "<td>".$row["Date_de_fin_réparation"]."</td>";
+                        echo "<td>".$row["Poblème"]."</td>";
+                        echo "<td style='WIDTH: 5%;'><a href='MODIFIER-Reparable.php?ID=$row[CODE]'><img style='width:86%;' src=photo/modifier.png ></a></td>";
+                        echo "<td style='WIDTH: 5%;'><a href='Reparable.php?rn=$row[CODE]' onClick=\"return confirm('confirmer le supression !!')\"><img src=photo/supprimer.png></a></td>";
+                        echo "</tr>";
+                    }
+                    }
+                    ?> 
                     
         </table>
     </div>

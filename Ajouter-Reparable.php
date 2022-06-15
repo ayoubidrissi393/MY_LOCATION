@@ -10,18 +10,18 @@
 <body>
   <div class="wrapper">
     <h2>AJOUTER UN REPARABLE</h2>
-    <form action="" method="">
+    <form  action="Ajouter-Reparable.php" method ="POST" enctype="multipart/form-data">
       <!-- <div class="input-box">
         <label for="">CODE</label><input type="text" placeholder="CODE" required>
       </div> -->
       <div class="input-box">
-        <label for="">MATRICULE</label><input type="text" placeholder="MATRICULE" required>
+        <label for="">MATRICULE</label><input  type="text" id="MATRICULE" name="MATRICULE" placeholder="MATRICULE" required>
       </div>
       <div class="input-box">
-         <label for="">DATE DEBUIT REPARI</label><input type="date" placeholder="DATE DEBUIT REPARI" required>
+         <label for="">DATE DEBUIT REPARI</label><input type="date"  id="DATE_DEBUIT_REPARI" name="DATE_DEBUIT_REPARI" placeholder="DATE DEBUIT REPARI" required>
       </div>
       <div class="input-box">
-        <label for="">DATE REPARI FIN</label> <input type="date" placeholder="DATE REPARI FIN" required>
+        <label for="">DATE REPARI FIN</label> <input type="date" id="DATE_REPARI_FIN" name="DATE_REPARI_FIN" placeholder="DATE REPARI FIN" required>
       </div> 
         <label for="">PROBLEME</label> 
       <div class="input-box-check">
@@ -47,9 +47,15 @@
         <label for="">DESCRIPTION</label> <textarea id="AREA" name="AREA" rows="3" cols="40"> </textarea>
       </div> 
       <div class="button">
-         <button>annuler</button>
+      <button type="submit" value="annuler" name="annuler">annuler</button>
+         <?php
+           if(isset($_POST['annuler']))
+           {   
+            header("location: Reparable.php");
+            }
+         ?>
          <!-- <img class="icon-annuler" src="photo/annuler.png"> -->
-         <button>valider</button>
+         <button type="submit" value="submit" name="submit">valider</button>
          <!-- <img class="icon-valider" src="photo/valider.png"> -->
       </div> 
     </form>
@@ -71,6 +77,27 @@
 
       }
   </script>
+   <?php
+      
+      if(isset($_POST['submit']))
+      {    
+          $matricule_voiture = $_POST['MATRICULE'];
+          $DATE_DEBUIT = $_POST['DATE_DEBUIT_REPARI'];
+          $DATE_FIN = $_POST['DATE_REPARI_FIN'];
+         
+          $Téléphone = $_POST['Télé'];
+          $Adresse = $_POST['ADRESSE'];
+          $CIN_Uti = $_POST['CIN_Uti'];
+
+          $sql = "INSERT INTO client (`Matricule `, `Date_de_début_réparation`, `Date_de_fin_réparation`, `Poblème`)
+           VALUES ('$matricule_voiture', '$DATE_DEBUIT', '$DATE_FIN', '$Numéro_Permis', '$Téléphone', '$Adresse', '$CIN_Uti');";
+           $result = mysqli_query($conn, $sql);
+           // move the uploaded image into the folder: images
+        
+         
+          header("location: CLIENTS.php");
+      }
+      ?>
 </body>
 </html>
 <?php

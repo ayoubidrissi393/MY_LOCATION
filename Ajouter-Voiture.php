@@ -79,7 +79,7 @@
           $Marque = $_POST['Marque'];
           $Modélé = $_POST['Modélé'];
           $Prix = $_POST['Prix'];
-          $L’eta = $_POST['L’eta'];
+          $etat = $_POST['L’eta'];
           $DATE_Circ = $_POST['DATE_Circ'];
           $Couleur = $_POST['Couleur'];
           $DATE_deb_taxe = $_POST['DATE_deb_taxe'];
@@ -98,7 +98,7 @@
           $sql = "INSERT INTO voiture (`Matricule`, `CIN_Uti`, `Carburant`, `Marque`, `Modélé`,`L’eta`, `Prix_Location`, 
           `Date_de_mise_en_circulation`, `Couleur`, `Date_de_début_taxes`, `Date_de_fin_taxes`,
            `Date_de_début_assurances`, `Date_de_fin_assurances`, `photo`)
-           VALUES ('$ID','$CIN_Uti', '$Carburant', '$Marque',$Modélé, '$L’eta','$Prix', '$DATE_Circ', '$Couleur', '$DATE_deb_taxe',
+           VALUES ('$ID','$CIN_Uti', '$Carburant', '$Marque',$Modélé, '$etat','$Prix', '$DATE_Circ', '$Couleur', '$DATE_deb_taxe',
                    '$DATE_FIN_taxe', '$DATE_deb_Aassurance','$DATE_FIN_Aassurance','$fileName');";
           
 
