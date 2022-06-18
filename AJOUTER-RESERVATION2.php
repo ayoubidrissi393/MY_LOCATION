@@ -41,7 +41,7 @@
           header("location: Reservation.php");
       }
       ?>
-    <form action="AJOUTER-RESERVATION.php" method ="POST" enctype="multipart/form-data">
+    <form action="AJOUTER-RESERVATION2.php" method ="POST" enctype="multipart/form-data">
       <!-- <div class="input-box">
         <label for="">CODE</label><input type="text" placeholder="CODE" required>
       </div> -->

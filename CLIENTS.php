@@ -19,13 +19,19 @@
     <div class="ajouter">
        <a href="Ajouter-Clients.php"> <button class="btn-ajouter">AJOUTER UN CLIENT</button>  </a>
     </div>
-    <div class="search-box-s">
-        <input type="text" placeholder="search....">
-        <a href="#" class="icon-s">
-            <i class="fas fa-search"></i>
-        </a>
-    </div>
+  
+    <form  method="POST">
+        <div class="search-box-s">
+            <input type="text" placeholder="search...."  name="search">
+            <button name="search-btn" class="icon-s">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </from>
     <div>
+        <?php
+      
+        ?>
         <table id="table_index" class="table table-dark table-striped">
                     <tr>
                         <th>CIN</th>
@@ -39,14 +45,6 @@
                     </tr>
         <?php 
 
-            // supprimer un element 
-            // if(isset($_REQUEST['ID'])) {
-            //     $id = $_REQUEST['ID'];
-            //     $sqlDelete = "DELETE FROM employe WHERE ID = '$id' ";
-            //     $conn->query($sqlDelete);
-            // header("Location: select.php");
-
-
              if(isset($_GET['rn']))
              {
              $id = $_GET['rn'];
@@ -59,12 +57,19 @@
              echo "Error: " . $sql . "" . mysqli_error($conn);
              }
             }
-        // recharger le donnes dans base donne 
-        $sql = "SELECT * FROM `client`";
-        $result = mysqli_query($conn, $sql);
-        $resultCheck =mysqli_num_rows($result);
+          
+            $search = "";
+            if(isset($_POST['search-btn'])){
+                $search = $_POST['search'];
+            } 
+                
+                $sql = "SELECT * 
+                FROM client
+                 WHERE CIN_Cli LIKE '%$search%' OR Prénom LIKE '%$search%'   OR Nom LIKE '%$search%'";  
+                 $result = mysqli_query($conn,$sql);
+                 $resultCheck =mysqli_num_rows($result);
 
-        if($resultCheck >0){
+                if($resultCheck >0){
             while($row = mysqli_fetch_assoc($result))
             {
                 echo "<tr>";
@@ -79,9 +84,17 @@
                 echo "</tr>";
             }
         }
-       
-    
-   ?> 
+              
+            
+        //      else
+        //      {
+             
+        // // recharger le donnes dans base donne 
+        //         $sql = "SELECT * FROM `client`";
+        //         $result = mysqli_query($conn, $sql);
+                
+    // }
+        ?> 
         </table>
     </div>
 </body>

@@ -404,6 +404,7 @@
         transition: 0.4s;
         cursor: pointer;
         text-decoration: none;
+        border: none;
     }
     /* button ajouter */
     .ajouter{

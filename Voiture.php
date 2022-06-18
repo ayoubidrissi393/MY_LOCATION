@@ -13,14 +13,30 @@
   <link rel="stylesheet" href="style-voiture.css">
 </head>
 <body>
-    <div class="search-box-s">
-        <input type="text" placeholder="search....">
-        <a href="#" class="icon-s">
-            <i class="fas fa-search"></i>
-        </a>
-    </div>
+<form  method="POST">
+        <div class="search-box-s">
+            <input type="text" placeholder="search...."  name="search">
+            <button name="search-btn" class="icon-s">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </from>
     <div class="card">
- <?php while ($row = mysqli_fetch_assoc($result)): ?>
+   <?php 
+    $search = "";
+            if(isset($_POST['search-btn'])){
+
+                $search = $_POST['search'];
+            } 
+                
+                $sql = "SELECT * 
+                FROM voiture
+                 WHERE Matricule  LIKE '%$search%' OR Marque LIKE '%$search%'   OR Modélé LIKE '%$search%' OR  L’eta LIKE '%$search%'";  
+                 $result = mysqli_query($conn,$sql);
+                //  $resultCheck =mysqli_num_rows($result);
+
+        while ($row = mysqli_fetch_assoc($result)): 
+    ?>
    <div class="cards">
                     <?php echo '<img class="img1" src="'. 'photo/'. $row["photo"].'"/>';?>
                     <a class="img2-c" href="Ajouter-Reparable.php"><img class="img2" src="photo/reparation.png"></a>
@@ -30,7 +46,7 @@
                     <label for="">L’eta : <span><?php echo $row["L’eta"]?></span></label> 
                     <label for="">prix : <span><?php echo $row["Prix_Location"]?></span></label> 
                     <div class="button">
-            <?php echo "<a href='AJOUTER-RESERVATION2.php?ID=$row[Matricule]'><button class='btn'>Reserver</button></a>"?>
+            <?php echo "<a href='AJOUTER-RESERVATION2.php?ID=$row[Matricule]'><button  class='btn'>Reserver</button></a>"?>
            <?php echo "<a href='MODIFIER-VOITURE.php?ID=$row[Matricule]'><button class='btn'>Modifier</button></a>"?>
                     </div>                    
               

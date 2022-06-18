@@ -19,12 +19,14 @@
     <div class="ajouter">
         <a href="AJOUTER-RESERVATION.php"><button class="btn-ajouter">AJOUTER RESERVATIONS</button>  </a>
     </div>
-    <div class="search-box-s">
-        <input type="text" placeholder="search....">
-        <a href="#" class="icon-s">
-            <i class="fas fa-search"></i>
-        </a>
-    </div>
+    <form  method="POST">
+        <div class="search-box-s">
+            <input type="text" placeholder="search...."  name="search">
+            <button name="search-btn" class="icon-s">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </from>
     <div>
         <table id="table_index" class="table table-dark table-striped">
                     <tr>
@@ -61,8 +63,15 @@
                     }
                     }
                     // recharger le donnes dans base donne 
-                    $sql = "SELECT * FROM `reservation`";
-                    $result = mysqli_query($conn, $sql);
+                    $search = "";
+                    if(isset($_POST['search-btn'])){
+                        $search = $_POST['search'];
+                    } 
+                
+                    $sql = "SELECT * 
+                    FROM reservation
+                    WHERE Code_Res  LIKE '%$search%' OR Matricule  LIKE '%$search%'   OR date_de_fin_Res LIKE '%$search%'";  
+                    $result = mysqli_query($conn,$sql);
                     $resultCheck =mysqli_num_rows($result);
 
                     if($resultCheck >0){
