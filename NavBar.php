@@ -16,7 +16,9 @@
                 </span>
 
                 <div class="text logo-text">
-                <h2 class="name"><?php echo $_SESSION["fname"]; ?></h2>
+                <h2 class="name"><?php 
+// if(isset($_SESSION["fname"]))
+                                    echo $_SESSION["fname"]; ?></h2>
                 </div>
             </div>
 
@@ -107,7 +109,7 @@
                     </a>
                 </li>
                 <?php
-                if (isset($_POST["logout"])) {
+                if (isset($_POST["logout"])) {     
                     session_destroy();
                       header("location:login.php");
                 }
