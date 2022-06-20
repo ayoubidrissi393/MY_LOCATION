@@ -13,12 +13,36 @@
 <body>
   <div class="wrapper">
     <h2>AJOUTER UN REPARABLE</h2>
+    <?php
+       $id = $_REQUEST['ID'];
+       if(isset($_REQUEST['ID'])) 
+       { 
+           $sqlSelect = "SELECT * FROM voiture WHERE Matricule = '$id' ";
+           $result = $conn->query($sqlSelect);
+           $row = $result -> fetch_array(MYSQLI_ASSOC);
+       }
+      if(isset($_POST['submit']))
+      {    
+          $matricule_voiture = $_POST['MATRICULE'];
+          $DATE_DEBUIT = $_POST['DATE_DEBUIT_REPARI'];
+          $DATE_FIN = $_POST['DATE_REPARI_FIN'];
+          $Problème_vo = $_POST['ch'];
+          $all_probleme=implode($Problème_vo);
+          $sql = "INSERT INTO réparation (`Matricule`, `Date_de_début_réparation`, `Date_de_fin_réparation`, `Poblème`)
+           VALUES ('$matricule_voiture', '$DATE_DEBUIT', '$DATE_FIN', '$all_probleme');";
+           $result = mysqli_query($conn, $sql);
+           // move the uploaded image into the folder: images
+        
+         
+          header("location: Reparable.php");
+      }
+      ?>
     <form  action="Ajouter-Reparable.php" method ="POST" enctype="multipart/form-data">
       <!-- <div class="input-box">
         <label for="">CODE</label><input type="text" placeholder="CODE" required>
       </div> -->
       <div class="input-box">
-        <label for="">MATRICULE</label><input  type="text" id="MATRICULE" name="MATRICULE" placeholder="MATRICULE" required>
+        <label for="">MATRICULE</label><input  type="text" id="MATRICULE" name="MATRICULE" value="<?php echo $row["Matricule"] ?>" placeholder="MATRICULE" required>
       </div>
       <div class="input-box">
          <label for="">DATE DEBUIT REPARI</label><input type="date"  id="DATE_DEBUIT_REPARI" name="DATE_DEBUIT_REPARI" placeholder="DATE DEBUIT REPARI" required>
@@ -76,28 +100,9 @@
             document.getElementById("text_autre").style.display="none";
             test=false;
         }
-
-
       }
   </script>
-   <?php
-      
-      if(isset($_POST['submit']))
-      {    
-          $matricule_voiture = $_POST['MATRICULE'];
-          $DATE_DEBUIT = $_POST['DATE_DEBUIT_REPARI'];
-          $DATE_FIN = $_POST['DATE_REPARI_FIN'];
-          $Problème_vo = $_POST['ch'];
-          $all_probleme=implode($Problème_vo);
-          $sql = "INSERT INTO réparation (`Matricule`, `Date_de_début_réparation`, `Date_de_fin_réparation`, `Poblème`)
-           VALUES ('$matricule_voiture', '$DATE_DEBUIT', '$DATE_FIN', '$all_probleme');";
-           $result = mysqli_query($conn, $sql);
-           // move the uploaded image into the folder: images
-        
-         
-          header("location: Reparable.php");
-      }
-      ?>
+   
 </body>
 </html>
 <?php

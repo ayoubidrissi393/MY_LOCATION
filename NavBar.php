@@ -1,4 +1,7 @@
-
+<?php 
+    include "Connexion.php";
+    session_start();
+?>
  <link rel="stylesheet" href="style_navbar.css">
     
     <!----===== Boxicons CSS ===== -->
@@ -13,7 +16,7 @@
                 </span>
 
                 <div class="text logo-text">
-                    <span class="name">Username</span>
+                <h2 class="name"><?php echo $_SESSION["fname"]; ?></h2>
                 </div>
             </div>
 
@@ -71,27 +74,44 @@
                         </a>
                     </li>
                     <?php
-                        if(1){
+                        if(isset($_SESSION["admin"]))
+                        {
+                            $sql = "SELECT * FROM utilisateur WHERE CIN_Uti='".$_SESSION["admin"]."' " ;
+                            $result = mysqli_query($conn, $sql);
+                            $row_assoc=$result->fetch_assoc();
+                            // echo $row_assoc["Rôle"]. "dfjfskjdffdskjhfjhsfdkhfsd";
+                            if($row_assoc["Rôle"] == "ADMIN"){
+                                ?>
+                                <li class="nav-link">
+                                    <a href="add_user.php">
+                                    <i class='icon'><img src="photo/add_user.png" class="icon-N"></i>
+                                        <span class="text nav-text">ajouter utilisatuer</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                        }
                     ?>
-                        <li class="nav-link">
-                        <a href="add_user.php">
-                        <i class='icon'><img src="photo/add_user.png" class="icon-N"></i>
-                            <span class="text nav-text">ajouter utilisatuer</span>
-                        </a>
-                    </li>
-                    <?php } ?>
+                        
+                   
 
                 </ul>
             </div>
 
             <div class="bottom-content">
                 <li class="">
+                <form method="POST"action="NavBar.php">
                     <a href="#">
-                        <i class='bx bx-log-out icon' ></i>
+                    <button class="btn-logout" type="submit" name="logout"><i class='bx bx-log-out icon' ></i></button>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-
+                <?php
+                if (isset($_POST["logout"])) {
+                    session_destroy();
+                      header("location:login.php");
+                }
+                ?>
                 <!-- <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>

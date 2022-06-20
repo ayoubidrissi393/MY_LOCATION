@@ -38,16 +38,31 @@
         while ($row = mysqli_fetch_assoc($result)): 
     ?>
    <div class="cards">
+                              
                     <?php echo '<img class="img1" src="'. 'photo/'. $row["photo"].'"/>';?>
-                    <a class="img2-c" href="Ajouter-Reparable.php"><img class="img2" src="photo/reparation.png"></a>
+                    <?php echo"<a class='img2-c' href='Ajouter-Reparable2.php?ID=$row[Matricule]'><img class='img2' src='photo/reparation.png'></a>"?>
                     <label for="">Marque : <span><?php echo $row["Marque"]?></span></label>
                     <label for="">Carburant : <span><?php echo $row["Carburant"]?></span></label>
                     <label for="">Matricule : <span><?php echo $row["Matricule"]?></span></label>
-                    <label for="">L’eta : <span><?php echo $row["L’eta"]?></span></label> 
+                    <label for="">L’eta : <span><?php
+                      if ($row["L’eta"]=='disponible'){ echo "<p d
+                        style='color:green'>disponible</p>";}
+                        else{echo "<p style='color:red'>indisponible</p>";} ?>
+                    <!-- echo $row["L’eta"] -->
+                    </span></label> 
                     <label for="">prix : <span><?php echo $row["Prix_Location"]?></span></label> 
                     <div class="button">
-            <?php echo "<a href='AJOUTER-RESERVATION2.php?ID=$row[Matricule]'><button  class='btn'>Reserver</button></a>"?>
-           <?php echo "<a href='MODIFIER-VOITURE.php?ID=$row[Matricule]'><button class='btn'>Modifier</button></a>"?>
+
+                    <?php if ($row["L’eta"]=='disponible') {
+                    echo  "<button  class='btn'><a class='a-btn' href='AJOUTER-RESERVATION2.php?ID=$row[Matricule]'>Reserver</a></button>";
+                    echo "<button class='btn'><a class='a-btn' href='MODIFIER-VOITURE.php?ID=$row[Matricule]'>Modifier</a></button>";
+                  }
+                  else{
+                  echo  "<button  class='btn'disabled style='color:red'>Reserver</button>";
+                  echo "<button class='btn'><a class='a-btn' href='MODIFIER-VOITURE.php?ID=$row[Matricule]' >Modifier</button></a>";
+                    }
+                  ?>
+
                     </div>                    
               
     </div>

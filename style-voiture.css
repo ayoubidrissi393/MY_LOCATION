@@ -65,6 +65,7 @@ input{
     padding: 30px;
     position: relative;
     border-radius: 15px;
+    
 }
 .btn{
     width: 45%;
@@ -93,4 +94,9 @@ label{
 }
 span{
     font-size: 12px;
+}
+.a-btn{
+    text-decoration: none;
+    color: black;
+   
 }

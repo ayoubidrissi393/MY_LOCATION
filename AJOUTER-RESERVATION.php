@@ -62,7 +62,7 @@
           $MATRICULE = $_POST['MATRICULE'];
           $DATE_RESR = $_POST['DATE_RESR'];
           $CIN_Uti = $_POST['CIN_Uti'];
-
+        
 
           $sql = "INSERT INTO reservation (`Date_de_début_Res`, `date_de_fin_Res`, `date_de_Reservation`, `CIN_Uti`, `CIN_Cli`, `Matricule`)
            VALUES ('$DATE_debuit', '$fin', '$DATE_RESR', '$CIN_Uti', '$CIN_Cli', '$MATRICULE');";

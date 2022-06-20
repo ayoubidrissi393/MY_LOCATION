@@ -47,7 +47,7 @@
             // Requête de modification d'enregistrement
             $sql = "UPDATE `voiture`
              SET `L’eta`='$etat',`Prix_Location`='$Prix',`Couleur`='$Couleur',`Date_de_début_taxes`='$DATE_deb_taxe',`Date_de_fin_taxes`=$DATE_FIN_taxe,
-             `Date_de_début_assurances`='$DATE_deb_Aassurance',`Date_de_fin_assurances`='$DATE_FIN_Aassurance', `photo`='$fileName'
+             `Date_de_début_assurances`='$DATE_deb_Aassurance',`Date_de_fin_assurances`='$DATE_FIN_Aassurance'
               WHERE Matricule ='$id';";
 
               
@@ -110,7 +110,7 @@
       </div>
       <div class="input-PHOTO">
         <label for="">PHOTO</label> 
-        <?php echo "<img src=photo/" . $row["photo"] . ">"?>
+        <?php echo "<img src=photo/" . $row["photo"] . " style='width:100px; '>"?>
 
         <input class="input-ph"  name="uploadfile" type="file" name="uploadfile" >
       </div> 

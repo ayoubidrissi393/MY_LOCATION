@@ -13,7 +13,7 @@
 <body>
   <div class="wrapper">
     <h2>AJOUTER UN CLIENT </h2>
-    <form action="Ajouter-Clients.php" method ="POST" enctype="multipart/form-data">
+    <form  action="Ajouter-Clients.php" method ="POST" enctype="multipart/form-data">
       <div class="input-box">
         <label for="">CIN</label><input type="text" id="CIN_Cli" name="CIN_Cli" placeholder="CIN" required>
       </div>
@@ -51,17 +51,27 @@
     </form>
   </div>
   <?php
-      
-        if(isset($_POST['submit']))
-        {    
-            $ID = $_POST['CIN_Cli'];
-            $prenom = $_POST['PRENOM'];
-            $nom = $_POST['NOM'];
-            $Numéro_Permis = $_POST['Numéro_Permis'];
-            $Téléphone = $_POST['Télé'];
-            $Adresse = $_POST['ADRESSE'];
-            $CIN_Uti = $_POST['CIN_Uti'];
-  
+     if(isset($_POST['submit']))
+     {    
+         $ID = $_POST['CIN_Cli'];
+         $prenom = $_POST['PRENOM'];
+         $nom = $_POST['NOM'];
+         $Numéro_Permis = $_POST['Numéro_Permis'];
+         $Téléphone = $_POST['Télé'];
+         $Adresse = $_POST['ADRESSE'];
+         $CIN_Uti = $_POST['CIN_Uti'];
+    
+      if ( !preg_match ("/^[a-zA-Z\s]+$/",$nom)) {
+        echo $errorsnom = "NOM must only contain letters!";
+     }
+     else 
+     if(!preg_match ("/^[a-zA-Z\s]+$/",$prenom)){
+      echo $errorsprenom = "PRENOM must only contain letters!";
+     }
+     
+     else{
+     
+     
             $sql = "INSERT INTO client (`CIN_Cli`, `Prénom`, `Nom`, `Numéro_De_Permis`, `Téléphone`, `Adresse`, `CIN_Uti`)
              VALUES ('$ID', '$prenom', '$nom', '$Numéro_Permis', '$Téléphone', '$Adresse', '$CIN_Uti');";
              $result = mysqli_query($conn, $sql);
@@ -69,7 +79,9 @@
           
            
             header("location: CLIENTS.php");
-        }
+        
+      } 
+    }
         ?>
 </body>
 </html>
